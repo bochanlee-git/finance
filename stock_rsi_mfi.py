@@ -81,7 +81,7 @@ def analyze_tickers(tickers):
                 "RSI": round(rsi, 2),
                 "MFI": round(mfi, 2),
                 "Score": round(score, 2),
-                "Group": classify_stock(rsi, mfi)
+                "Group": classify_stock(rsi, mfi),
                 "Error Message": ""
             })
 
