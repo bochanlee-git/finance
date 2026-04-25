@@ -82,17 +82,20 @@ def analyze_tickers(tickers):
                 "MFI": round(mfi, 2),
                 "Score": round(score, 2),
                 "Group": classify_stock(rsi, mfi)
+                "Error Message": ""
             })
 
-        except Exception as e:
-            print(f"{ticker} error: {e}")
+            except Exception as e:
+            error_msg = str(e)
+            print(f"{ticker} error: {error_msg}")
 
             results.append({
                 "Ticker": ticker,
                 "RSI": None,
                 "MFI": None,
                 "Score": None,
-                "Group": f"Error: {e}"
+                "Group": "Error",
+                "Error Message": error_msg
             })
 
     result_df = pd.DataFrame(results)
