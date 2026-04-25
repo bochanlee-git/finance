@@ -64,11 +64,13 @@ def analyze_tickers(tickers):
             if df.empty:
                 raise ValueError("No data")
 
+            if isinstance(df.columns, pd.MultiIndex):
+                df.columns = df.columns.get_level_values(0)
+
             df["RSI"] = calc_rsi(df["Close"])
             df["MFI"] = calc_mfi(df["High"], df["Low"], df["Close"], df["Volume"])
-            df = df.dropna()
 
-            latest = df.iloc[-1]
+            latest = df[["RSI", "MFI"]].dropna().iloc[-1]
 
             rsi = float(latest["RSI"])
             mfi = float(latest["MFI"])
@@ -82,13 +84,15 @@ def analyze_tickers(tickers):
                 "Group": classify_stock(rsi, mfi)
             })
 
-        except Exception:
+        except Exception as e:
+            print(f"{ticker} error: {e}")
+
             results.append({
                 "Ticker": ticker,
                 "RSI": None,
                 "MFI": None,
                 "Score": None,
-                "Group": "Error"
+                "Group": f"Error: {e}"
             })
 
     result_df = pd.DataFrame(results)
