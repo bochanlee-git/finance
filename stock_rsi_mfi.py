@@ -85,7 +85,7 @@ def analyze_tickers(tickers):
                 "Error Message": ""
             })
 
-            except Exception as e:
+        except Exception as e:
             error_msg = str(e)
             print(f"{ticker} error: {error_msg}")
 
