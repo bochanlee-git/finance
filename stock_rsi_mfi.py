@@ -48,6 +48,19 @@ def classify_stock(rsi, mfi):
         return "E"
 
 
+def get_comment(group):
+    if group == "A":
+        return "판규야 지금이다"
+    elif group == "B":
+        return "판규야 사도된다"
+    elif group == "C":
+        return "판규야 비중축소"
+    elif group == "D":
+        return "판규야 조금팔자"
+    else:
+        return "판규야 내비둬라"
+
+
 def analyze_tickers(tickers):
     results = []
 
@@ -76,13 +89,15 @@ def analyze_tickers(tickers):
             mfi = float(latest["MFI"])
             score = (rsi * 0.7) + (mfi * 0.3)
 
+            group = classify_stock(rsi, mfi)
+            
             results.append({
                 "Ticker": ticker,
                 "RSI": round(rsi, 2),
                 "MFI": round(mfi, 2),
                 "Score": round(score, 2),
-                "Group": classify_stock(rsi, mfi),
-                "Error Message": ""
+                "Group": group,
+                "Comment": get_comment(group)
             })
 
         except Exception as e:
@@ -95,7 +110,7 @@ def analyze_tickers(tickers):
                 "MFI": None,
                 "Score": None,
                 "Group": "Error",
-                "Error Message": error_msg
+                "Comment": error_msg
             })
 
     result_df = pd.DataFrame(results)
