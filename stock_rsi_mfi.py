@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-TICKERS = ["WELL", "EQIX", "PLD", "TSCO", "MSCI", "AVGO", "ASML", "UNH", "MDT", "NEE", "MCD", "XOM", "WMT", "SYY", "SWK", "SPGI", "PPG", "NUE", "NDSN", "LEG", "KMB", "DOV", "GWW", "GPC", "FNF", "EMR", "CL", "CINF", "BDX", "ABT", "AMT", "HRL", "ABBV", "ADP", "MO", "PEP", "MMM", "JNJ", "DIVO", "O", "JEPQ", "JEPI", "SCHD", "BAC", "TGT", "ITW", "LOW", "PG", "JPM", "KO"]
+TICKERS = ["WELL", "EQIX", "PLD", "TSCO", "MSCI", "AVGO", "ASML", "UNH", "MDT", "NEE", "MCD", "XOM", "WMT", "SYY", "SWK", "SPGI", "PPG", "NUE", "NDSN", "LEG", "KMB", "DOV", "GWW", "GPC", "FNF", "EMR", "CL", "CINF", "BDX", "ABT", "AMT", "HRL", "ABBV", "ADP", "MO", "PEP", "MMM", "JNJ", "DIVO", "O", "JEPQ", "JEPI", "SCHD", "BAC", "TGT", "ITW", "LOW", "PG", "JPM", "KO", "TLTW"]
 
 def calc_rsi(close, period=14):
     delta = close.diff()
